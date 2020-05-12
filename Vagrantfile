@@ -22,13 +22,14 @@ Vagrant.configure("2") do |config|
     c.vm.provision :shell, :path => "scripts/setup-k8s-master.sh"
   end
 
-  (1..2).each do |n|
-    config.vm.define "worker-#{n}" do |c| c.vm.hostname = "worker-#{n}.internal"
+  (1..3).each do |n|
+    config.vm.define "worker-#{n}" do |c| 
+      c.vm.hostname = "worker-#{n}.internal"
       c.vm.network "private_network", ip: "10.240.0.2#{n}"
       c.vm.provider "virtualbox" do |v|
         v.gui = false
-        v.cpus = 1
-        v.memory = 1024
+        v.cpus = 2
+        v.memory = 4096
       end
 
       c.vm.provision :shell, :path => "scripts/setup-initial-ubuntu.sh"
