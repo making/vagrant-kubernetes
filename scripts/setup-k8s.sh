@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-KUBERNETES_VERSION=1.18.0-00
+KUBERNETES_VERSION=1.17.4-00
 
 # install lecagy binary
 sudo apt-get install -y iptables arptables ebtables
