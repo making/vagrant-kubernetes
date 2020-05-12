@@ -1,31 +1,29 @@
-# vagrant-kubernetes-with-datadog
+# vagrant-kubernetes
 
-vagrantで作ったkubernetes環境にdatadogでモニタリングを設定します。
+Bootstraping the following Kubernetes cluster
 
-Vagrantで以下の初期環境が構築されます。
+* master x 1 (2 cpu, 2GB RAM)
+* worker x 3 (2 cpu, 4GB RAM)
+* CNI: Calico
 
-- kubernetesクラスタ
-  - master x 1
-  - worker x 2
-  - CNIはCalico
-
-あとは手順に従ってdatadogの設定を行います。
-
-## 必要なもの
+## Prerequisite
 
 - Vagrant
 
 ```
-$ brew cask install vagrant virtualbox virtualbox-extension-pack
+brew cask install vagrant virtualbox virtualbox-extension-pack
 ```
 
-- datadogアカウント
-  - アカウント作成後、14日間は試用期間として無料でフル機能にアクセスできます。
-  - それ以降でも無料版アカウントあります。（ただしログやAPMなどの機能にはアクセスできません）
-
-## 使い方
+## How to use
 
 ```
-$ git clone https://github.com/kun432/vagrant-kubernetes-with-datadog.git
-$ vagrant up
+git clone https://github.com/making/vagrant-kubernetes.git
+mkdir share
+vagrant up
+```
+
+```
+vagrant ssh master -c 'cat $HOME/.kube/config' > kubconfig-vagrant.yml
+KUBECONFIG=${PWD}/kubconfig-vagrant.yml
+kubectl get nodes -o wide
 ```
