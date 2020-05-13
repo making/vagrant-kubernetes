@@ -27,3 +27,12 @@ vagrant ssh master-1 -c 'cat $HOME/.kube/config' > kubconfig-vagrant.yml
 KUBECONFIG=${PWD}/kubconfig-vagrant.yml
 kubectl get nodes -o wide
 ```
+
+
+If you want to use the bridge network, comment out following lines and change IP according to your network.
+
+```
+       #c.vm.network "public_network", ip: "192.168.11.1#{n}", bridge: "eno1: Ethernet"
+```
+
+If your API server is runing on `192.168.11.11`, then you can reach it via `192-168-11-11.sslip.io`. Change the server url in your kubeconfig.
