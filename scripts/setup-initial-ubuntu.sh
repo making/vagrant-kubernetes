@@ -1,10 +1,16 @@
 #!/bin/bash
 
-set -euo pipefail
+set -exuo pipefail
 
-# set timezone
-sudo timedatectl set-timezone Asia/Tokyo
+VAGRANT_PROVISION=/var/vagrant/provison
 
-# update all
-sudo apt-get update -y
-sudo apt-get upgrade -y
+if [ ! -d ${VAGRANT_PROVISION} ];then
+  echo "==== Create ${VAGRANT_PROVISION} ===="
+  # set timezone
+  sudo timedatectl set-timezone Asia/Tokyo
+  
+  # update all
+  sudo apt-get update -y
+  sudo apt-get upgrade -y
+  mkdir -p ${VAGRANT_PROVISION}
+fi

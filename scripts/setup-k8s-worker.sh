@@ -1,5 +1,12 @@
 #!/bin/bash
 
-set -euo pipefail
+set -exuo pipefail
 
-/share/join-worker.sh
+VAGRANT_PROVISION=/var/vagrant/provison
+
+if [ ! -f ${VAGRANT_PROVISION}/join-worker ];then
+  echo "==== Start join-worker ===="
+  /share/join-worker.sh
+  touch ${VAGRANT_PROVISION}/join-worker
+  echo "==== Finish join-worker ===="
+fi
