@@ -3,6 +3,7 @@
 set -exuo pipefail
 
 CALICO_VERSION=v3.13
+METRICS_SERVER_VERSION=v0.3.6
 
 IPADDR=$(ip a show enp0s8 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
 
@@ -31,6 +32,7 @@ if [ ! -f ${VAGRANT_PROVISION}/kubeadm-init ];then
 fi
 
 kubectl apply -f https://docs.projectcalico.org/${CALICO_VERSION}/manifests/calico.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/${METRICS_SERVER_VERSION}/components.yaml
 
 cat <<EOF | tee /share/join-worker.sh
 #!/bin/bash
