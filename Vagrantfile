@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "master-#{n}" do |c|
       c.vm.hostname = "master-#{n}.internal"
       c.vm.network "private_network", ip: "10.240.0.1#{n}"
+      #c.vm.network "public_network", ip: "192.168.11.1#{n}", bridge: "eno1: Ethernet"
       c.vm.provider "virtualbox" do |v|
         v.gui = false
         v.cpus = 2
@@ -23,10 +24,11 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  (1..3).each do |n|
+  (1..1).each do |n|
     config.vm.define "worker-#{n}" do |c| 
       c.vm.hostname = "worker-#{n}.internal"
       c.vm.network "private_network", ip: "10.240.0.2#{n}"
+      #c.vm.network "public_network", ip: "192.168.11.2#{n}", bridge: "eno1: Ethernet"
       c.vm.provider "virtualbox" do |v|
         v.gui = false
         v.cpus = 2
