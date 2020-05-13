@@ -10,8 +10,17 @@ Bootstraping the following Kubernetes cluster
 
 - Vagrant
 
+
+For Mac
+
 ```
 brew cask install vagrant virtualbox virtualbox-extension-pack
+```
+
+For Ubuntu
+
+```
+sudo apt install -y virtualbox virtualbox-ext-pack vagrant
 ```
 
 ## How to use
