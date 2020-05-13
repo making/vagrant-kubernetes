@@ -2,8 +2,8 @@
 
 Bootstraping the following Kubernetes cluster
 
-* master x 1 (2 cpu, 2GB RAM)
-* worker x 3 (2 cpu, 4GB RAM)
+* master (2 cpu, 2GB RAM) x 1
+* worker (2 cpu, 4GB RAM) x 3 (Configurable)
 * CNI: Calico
 
 ## Prerequisite

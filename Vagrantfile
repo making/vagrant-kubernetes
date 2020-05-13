@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  (1..1).each do |n|
+  (1..3).each do |n|
     config.vm.define "worker-#{n}" do |c| 
       c.vm.hostname = "worker-#{n}.internal"
       c.vm.network "private_network", ip: "10.240.0.2#{n}"
