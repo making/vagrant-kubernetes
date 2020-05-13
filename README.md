@@ -23,7 +23,7 @@ vagrant up
 ```
 
 ```
-vagrant ssh master -c 'cat $HOME/.kube/config' > kubconfig-vagrant.yml
+vagrant ssh master-1 -c 'cat $HOME/.kube/config' > kubconfig-vagrant.yml
 KUBECONFIG=${PWD}/kubconfig-vagrant.yml
 kubectl get nodes -o wide
 ```
