@@ -6,7 +6,7 @@ cp sample-values. values.yml
 
 ## Deploy [Inlets Operator](https://github.com/inlets/inlets-operator)
 
-Configure `inlets_access_key` for Digital Ocean API Token in `values.yml`
+Configure `digitalocean_access_token` for Digital Ocean API Token in `values.yml`
 
 Then
 
