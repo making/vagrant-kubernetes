@@ -11,6 +11,8 @@ directories:
     path: inlets-operator
   - manual: {}
     path: nfs-client-provisioner
+  - manual: {}
+    path: kube-state-metrics
   path: vendor
 - contents:
   - git:
@@ -18,4 +20,11 @@ directories:
       sha: a0fcd60856902429e3369f243414233d2923122c
     path: .
   path: build/nfs-client-provisioner/_vendir
+- contents:
+  - git:
+      commitTitle: '[stable/kube-state-metrics] Use apiGroup policy rather than extension
+        for k8s > 1.15 in ClusterRole psp-kube-state-metrics (#21563)...'
+      sha: 329944ed63ead692e3d6aa5081306aa57785da6f
+    path: .
+  path: build/kube-state-metrics/_vendir
 kind: LockConfig

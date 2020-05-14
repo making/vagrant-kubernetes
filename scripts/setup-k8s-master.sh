@@ -33,6 +33,7 @@ fi
 
 kubectl apply -f https://docs.projectcalico.org/${CALICO_VERSION}/manifests/calico.yaml
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/${METRICS_SERVER_VERSION}/components.yaml
+# TODO https://github.com/kubernetes-sigs/metrics-server/issues/131#issuecomment-418613256
 
 cat <<EOF | tee /share/join-worker.sh
 #!/bin/bash
