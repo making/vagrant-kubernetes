@@ -9,5 +9,13 @@ directories:
       commitTitle: Update inlets OSS proxy version...
       sha: 09829da2db6ddd83332017378ba4b2da30f961e6
     path: inlets-operator
+  - manual: {}
+    path: nfs-client-provisioner
   path: vendor
+- contents:
+  - git:
+      commitTitle: '[stable/nfs-client-provisioner] fix imagePullSecrets (#18442)...'
+      sha: a0fcd60856902429e3369f243414233d2923122c
+    path: .
+  path: build/nfs-client-provisioner/_vendir
 kind: LockConfig

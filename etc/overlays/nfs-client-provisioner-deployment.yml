@@ -1,0 +1,24 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"kind":"Deployment","metadata":{"name":"nfs-client-provisioner"}})
+---
+spec:
+  template:
+    spec:
+      containers:
+      #@overlay/match by="name"
+      - name: nfs-client-provisioner
+        env:
+        #@overlay/match by="name"
+        - name: NFS_SERVER
+          value: #@ data.values.nfs_server
+        #@overlay/match by="name"
+        - name: NFS_PATH
+          value: #@ data.values.nfs_path
+      volumes:
+      #@overlay/match by="name"
+      - name: nfs-client-root
+        nfs:
+          path: #@ data.values.nfs_path
+          server: #@ data.values.nfs_server

@@ -33,3 +33,6 @@ Temporary Items
 .vagrant/
 share/
 *.log
+
+.idea
+_demo
