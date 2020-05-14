@@ -4,6 +4,14 @@
 cp sample-values. values.yml
 ```
 
+## Deploy [kube-state-metrics](https://github.com/helm/charts/tree/master/stable/kube-state-metrics)
+
+```
+kapp deploy -a kube-state-metrics --diff-changes \
+  -f <(ytt --ignore-unknown-comments \
+    -f vendor/kube-state-metrics/rendered.yml)
+```
+
 ## Deploy [NFS client provisioner](https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner)
 
 Prepare a NFS server in advance. If you have Synology NAS, see [this blog post](https://blog.cowger.us/2018/08/03/nfs-on-synology.html).

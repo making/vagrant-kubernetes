@@ -17,6 +17,8 @@ directories:
     - artifacts/*
   - path: nfs-client-provisioner
     manual: {}
+  - path: kube-state-metrics
+    manual: {}
 - path: build/nfs-client-provisioner/_vendir
   contents:
   - path: .
@@ -25,3 +27,11 @@ directories:
       ref: a0fcd60856902429e3369f243414233d2923122c # version 1.2.8
     includePaths:
     - stable/nfs-client-provisioner/**/*
+- path: build/kube-state-metrics/_vendir
+  contents:
+  - path: .
+    git:
+      url: https://github.com/helm/charts
+      ref: 329944ed63ead692e3d6aa5081306aa57785da6f # version 2.8.4
+    includePaths:
+    - stable/kube-state-metrics/**/*
