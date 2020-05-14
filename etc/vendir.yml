@@ -15,3 +15,13 @@ directories:
       ref: 0.7.3
     includePaths:
     - artifacts/*
+  - path: nfs-client-provisioner
+    manual: {}
+- path: build/nfs-client-provisioner/_vendir
+  contents:
+  - path: .
+    git:
+      url: https://github.com/helm/charts
+      ref: a0fcd60856902429e3369f243414233d2923122c # version 1.2.8
+    includePaths:
+    - stable/nfs-client-provisioner/**/*

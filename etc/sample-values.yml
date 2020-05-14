@@ -3,3 +3,5 @@
 digitalocean_access_token: CHANGEME for inlets-operator
 inlets_remote: CHANGEME for contour
 inlets_token: CHANGEME for contour
+nfs_server: CHANGEME for nfs-client-provisioner
+nfs_path: CHANGEME for nfs-client-provisioner

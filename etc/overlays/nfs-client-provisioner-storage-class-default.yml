@@ -1,0 +1,8 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"kind":"StorageClass","metadata":{"name":"nfs-client"}})
+---
+metadata:
+  #@overlay/match missing_ok=True
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
