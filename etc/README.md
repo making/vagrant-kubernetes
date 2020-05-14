@@ -4,6 +4,25 @@
 cp sample-values. values.yml
 ```
 
+## Deploy [NFS client provisioner](https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner)
+
+Prepare a NFS server in advance. If you have Synology NAS, see [this blog post](https://blog.cowger.us/2018/08/03/nfs-on-synology.html).
+
+Configure `nfs_server_` and `nfs_path` in `values.yml`
+
+Then
+
+```
+kapp deploy -a nfs-client-provisioner --diff-changes \
+  -f <(ytt --ignore-unknown-comments \
+    -f vendor/nfs-client-provisioner/rendered.yml \
+    -f config/nfs-client-provisioner-namespace.yml \
+    -f overlays/nfs-client-provisioner-storage-class-default.yml \
+    -f overlays/nfs-client-provisioner-namespace.yml \
+    -f overlays/nfs-client-provisioner-deployment.yml \
+    -f values.yml)
+```
+
 ## Deploy [Contour](https://github.com/projectcontour/contour)
 
 ```
