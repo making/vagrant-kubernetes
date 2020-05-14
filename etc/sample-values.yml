@@ -1,3 +1,5 @@
 #@data/values
 ---
-digitalocean_access_token: CHANGEME
+digitalocean_access_token: CHANGEME for inlets-operator
+inlets_remote: CHANGEME for contour
+inlets_token: CHANGEME for contour

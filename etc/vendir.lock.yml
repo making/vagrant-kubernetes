@@ -2,6 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
+      commitTitle: Update Contour Docker image to v1.4.0....
+      sha: 0ef045ba773ee3defb91990affefd6050863ed8a
+    path: contour
+  - git:
       commitTitle: Update inlets OSS proxy version...
       sha: 09829da2db6ddd83332017378ba4b2da30f961e6
     path: inlets-operator

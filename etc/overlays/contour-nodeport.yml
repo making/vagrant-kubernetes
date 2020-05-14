@@ -1,0 +1,16 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"kind":"Service","metadata":{"name":"envoy"}})
+---
+spec:
+  #@overlay/match
+  type: NodePort
+  ports:
+  #@overlay/match by="name"
+  - name: http
+    #@overlay/match missing_ok=True
+    nodePort: 32080
+  #@overlay/match by="name"
+  - name: https
+    #@overlay/match missing_ok=True
+    nodePort: 32443
