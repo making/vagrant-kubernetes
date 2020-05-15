@@ -14,3 +14,10 @@ if [ ! -d ${VAGRANT_PROVISION} ];then
   sudo apt-get upgrade -y
   mkdir -p ${VAGRANT_PROVISION}
 fi
+
+if [ ! -f ${VAGRANT_PROVISION}/k14s ];then
+  echo "==== Start installing k14s ===="
+  curl -L https://k14s.io/install.sh | bash
+  touch ${VAGRANT_PROVISION}/k14s
+  echo "==== Finish installing k14s ===="
+fi

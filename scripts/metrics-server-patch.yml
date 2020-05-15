@@ -1,0 +1,16 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"kind":"Deployment","metadata":{"name":"metrics-server"}})
+---
+spec:
+  template:
+    spec:
+      containers:
+      # https://github.com/kubernetes-sigs/metrics-server/issues/131#issuecomment-418613256
+      #@overlay/match by="name"
+      - name: metrics-server
+        args:
+        #@overlay/append
+        - --kubelet-insecure-tls
+        #@overlay/append
+        - --kubelet-preferred-address-types=InternalIP
