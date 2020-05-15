@@ -28,15 +28,22 @@ if [ ! -f ${VAGRANT_PROVISION}/k8s-${KUBERNETES_VERSION} ];then
   sudo apt-get install -y kubelet=${KUBERNETES_VERSION} kubeadm=${KUBERNETES_VERSION} kubectl=${KUBERNETES_VERSION}
   sudo apt-mark hold kubelet kubeadm kubectl
   
-  # get private network IP addr and set bind it to kubelet
-  IPADDR=$(ip a show enp0s8 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
-  cat <<EOF | sudo tee /etc/default/kubelet
-KUBELET_EXTRA_ARGS=--node-ip=${IPADDR}
-EOF
-  
-  # restart kubelet
   sudo systemctl daemon-reload
-  sudo systemctl restart kubelet
   touch ${VAGRANT_PROVISION}/k8s-${KUBERNETES_VERSION}
   echo "==== Finish install k8s-${KUBERNETES_VERSION} ===="
+fi
+
+touch /etc/default/kubelet
+KUBELET_MD5=$(md5sum /etc/default/kubelet | cut -d " " -f 1)
+
+# get private network IP addr and set bind it to kubelet
+IPADDR=$(ip a show enp0s8 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
+cat <<EOF | sudo tee /etc/default/kubelet
+KUBELET_EXTRA_ARGS=--node-ip=${IPADDR} --read-only-port=10255
+EOF
+
+if [ "$(md5sum /etc/default/kubelet | cut -d " " -f 1)" != "${KUBELET_MD5}" ];then
+  echo "Restarting Kubelet"
+  # restart kubelet
+  sudo systemctl restart kubelet
 fi
