@@ -1,7 +1,19 @@
 #@data/values
 ---
-digitalocean_access_token: CHANGEME for inlets-operator
-inlets_remote: CHANGEME for contour
-inlets_token: CHANGEME for contour
-nfs_server: CHANGEME for nfs-client-provisioner
-nfs_path: CHANGEME for nfs-client-provisioner
+# NFS-client-provisioner
+nfs_server: CHANGEME
+nfs_path: CHANGEME
+# MetalLB
+metallb_secret_key: CHANGEME for metallb ex. $(openssl rand -base64 128)
+metallb_config: |
+  address-pools:
+  - name: my-ip-space
+    protocol: layer2
+    addresses:
+    - 192.168.1.240/28
+# Contour
+inlets_remote: CHANGEME
+inlets_token: CHANGEME
+# Inlets Operato
+digitalocean_access_token: CHANGEME
+
