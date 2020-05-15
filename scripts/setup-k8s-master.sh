@@ -32,8 +32,12 @@ if [ ! -f ${VAGRANT_PROVISION}/kubeadm-init ];then
 fi
 
 kubectl apply -f https://docs.projectcalico.org/${CALICO_VERSION}/manifests/calico.yaml
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/${METRICS_SERVER_VERSION}/components.yaml
-# TODO https://github.com/kubernetes-sigs/metrics-server/issues/131#issuecomment-418613256
+
+curl -sL https://github.com/kubernetes-sigs/metrics-server/releases/download/${METRICS_SERVER_VERSION}/components.yaml | \
+  ytt --ignore-unknown-comments \
+      -f - \
+      -f /vagrant/scripts/metrics-server-patch.yml | \
+  kubectl apply -f -
 
 cat <<EOF | tee /share/join-worker.sh
 #!/bin/bash
