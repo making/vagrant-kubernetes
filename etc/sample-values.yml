@@ -14,6 +14,8 @@ metallb_config: |
 # Contour
 inlets_remote: CHANGEME
 inlets_token: CHANGEME
-# Inlets Operato
+# Datadog
+datadog_api_key: CHANGE
+# Inlets Operator
 digitalocean_access_token: CHANGEME
 

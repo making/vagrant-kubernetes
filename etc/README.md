@@ -4,14 +4,6 @@
 cp sample-values. values.yml
 ```
 
-## Deploy [kube-state-metrics](https://github.com/helm/charts/tree/master/stable/kube-state-metrics)
-
-```
-kapp deploy -a kube-state-metrics --diff-changes \
-  -f <(ytt --ignore-unknown-comments \
-    -f vendor/kube-state-metrics/rendered.yml)
-```
-
 ## Deploy [Metal LB](https://github.com/metallb/metallb)
 
 Configure `metallb_secret_key` and `metallb_config` in `values.yml`
@@ -82,6 +74,28 @@ kapp deploy -a contour --diff-changes \
     -f vendor/contour/examples/contour/03-contour.yaml \
     -f vendor/contour/examples/contour/03-envoy.yaml \
     -f overlays/contour-inlets-client-sidecer.yml \
+    -f values.yml)
+```
+
+## Deploy [kube-state-metrics](https://github.com/helm/charts/tree/master/stable/kube-state-metrics)
+
+```
+kapp deploy -a kube-state-metrics --diff-changes \
+  -f <(ytt --ignore-unknown-comments \
+    -f vendor/kube-state-metrics/rendered.yml)
+```
+
+## Deploy [datadog-agent](https://github.com/DataDog/datadog-agent)
+
+Then configure `datadog_api_key` in `values.yml`.
+
+```
+kapp deploy -a datadog-agent --diff-changes \
+  -f <(ytt --ignore-unknown-comments \
+    -f config/datadog-agent-vanilla.yaml \
+    -f config/datadog-namespace.yml \
+    -f overlays/datadog-agent-secret.yml \
+    -f overlays/datadog-namespace.yml \
     -f values.yml)
 ```
 
