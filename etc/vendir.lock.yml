@@ -6,6 +6,10 @@ directories:
       sha: 0ef045ba773ee3defb91990affefd6050863ed8a
     path: contour
   - git:
+      commitTitle: Automated update for release v0.9.3
+      sha: 0dbe7c42039c4658ba39a8097723823201acb17a
+    path: metallb
+  - git:
       commitTitle: Update inlets OSS proxy version...
       sha: 09829da2db6ddd83332017378ba4b2da30f961e6
     path: inlets-operator

@@ -9,6 +9,12 @@ directories:
       ref: v1.4.0
     includePaths:
     - examples/contour/*
+  - path: metallb
+    git:
+      url: https://github.com/metallb/metallb
+      ref: v0.9.3
+    includePaths:
+    - manifests/*
   - path: inlets-operator
     git:
       url: https://github.com/inlets/inlets-operator
