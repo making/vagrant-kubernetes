@@ -21,10 +21,11 @@ Vagrant.configure("2") do |config|
       c.vm.provision :shell, :path => "scripts/setup-docker-ubuntu.sh"
       c.vm.provision :shell, :path => "scripts/setup-k8s.sh"
       c.vm.provision :shell, :path => "scripts/setup-k8s-master.sh"
+      c.disksize.size = '50GB'
     end
   end
 
-  (1..4).each do |n|
+  (1..3).each do |n|
     config.vm.define "worker-#{n}" do |c| 
       c.vm.hostname = "worker-#{n}.internal"
       c.vm.network "private_network", ip: "10.240.0.2#{n}"
@@ -32,7 +33,7 @@ Vagrant.configure("2") do |config|
       c.vm.provider "virtualbox" do |v|
         v.gui = false
         v.cpus = 2
-        v.memory = 4096
+        v.memory = 8192
       end
 
       c.vm.provision :shell, :path => "scripts/setup-initial-ubuntu.sh"

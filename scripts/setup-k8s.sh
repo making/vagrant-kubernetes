@@ -2,7 +2,7 @@
 
 set -exuo pipefail
 
-KUBERNETES_VERSION=1.17.4-00
+KUBERNETES_VERSION=1.18.3-00
 
 VAGRANT_PROVISION=/var/vagrant/provison
 
@@ -37,7 +37,7 @@ touch /etc/default/kubelet
 KUBELET_MD5=$(md5sum /etc/default/kubelet | cut -d " " -f 1)
 
 # get private network IP addr and set bind it to kubelet
-IPADDR=$(ip a show enp0s8 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
+IPADDR=$(ip a show enp0s9 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=${IPADDR} --read-only-port=10255
 EOF

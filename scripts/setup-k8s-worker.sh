@@ -17,3 +17,7 @@ if [ ! -f ${VAGRANT_PROVISION}/nfs-common ];then
   touch ${VAGRANT_PROVISION}/nfs-common
   echo "==== Finish nfs-common ===="
 fi
+
+for i in $(ls /vagrant/images/*.tgz);do
+  docker load -i $i
+done

@@ -3,9 +3,8 @@
 set -exuo pipefail
 
 CALICO_VERSION=v3.13
-METRICS_SERVER_VERSION=v0.3.6
 
-IPADDR=$(ip a show enp0s8 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
+IPADDR=$(ip a show enp0s9 | grep inet | grep -v inet6 | awk '{print $2}' | cut -f1 -d/)
 
 VAGRANT_PROVISION=/var/vagrant/provison
 
@@ -15,7 +14,7 @@ if [ ! -f ${VAGRANT_PROVISION}/kubeadm-init ];then
     --control-plane-endpoint="${IPADDR}:6443" \
     --apiserver-advertise-address="${IPADDR}" \
     --apiserver-cert-extra-sans="*.sslip.io,*.maki.lol" \
-    --kubernetes-version="v1.17.4" \
+    --kubernetes-version="v1.18.3" \
     --pod-network-cidr="10.200.0.0/16" \
     --upload-certs
 
@@ -32,12 +31,6 @@ if [ ! -f ${VAGRANT_PROVISION}/kubeadm-init ];then
 fi
 
 kubectl apply -f https://docs.projectcalico.org/${CALICO_VERSION}/manifests/calico.yaml
-
-curl -sL https://github.com/kubernetes-sigs/metrics-server/releases/download/${METRICS_SERVER_VERSION}/components.yaml | \
-  ytt --ignore-unknown-comments \
-      -f - \
-      -f /vagrant/scripts/metrics-server-patch.yml | \
-  kubectl apply -f -
 
 cat <<EOF | tee /share/join-worker.sh
 #!/bin/bash
