@@ -14,7 +14,7 @@ if [ ! -f ${VAGRANT_PROVISION}/kubeadm-init ];then
     --control-plane-endpoint="${IPADDR}:6443" \
     --apiserver-advertise-address="${IPADDR}" \
     --apiserver-cert-extra-sans="*.sslip.io,*.maki.lol" \
-    --kubernetes-version="v1.18.3" \
+    --kubernetes-version="v1.18.6" \
     --pod-network-cidr="10.200.0.0/16" \
     --upload-certs
 

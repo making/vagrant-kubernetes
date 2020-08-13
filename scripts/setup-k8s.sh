@@ -2,7 +2,7 @@
 
 set -exuo pipefail
 
-KUBERNETES_VERSION=1.18.3-00
+KUBERNETES_VERSION=1.18.6-00
 
 VAGRANT_PROVISION=/var/vagrant/provison
 
@@ -25,7 +25,7 @@ if [ ! -f ${VAGRANT_PROVISION}/k8s-${KUBERNETES_VERSION} ];then
   sudo apt-get install -y iptables arptables ebtables
   
   # install kubeadm, kubelet, kubectl
-  sudo apt-get install -y kubelet=${KUBERNETES_VERSION} kubeadm=${KUBERNETES_VERSION} kubectl=${KUBERNETES_VERSION}
+  sudo apt-get install --allow-change-held-packages -y kubelet=${KUBERNETES_VERSION} kubeadm=${KUBERNETES_VERSION} kubectl=${KUBERNETES_VERSION}
   sudo apt-mark hold kubelet kubeadm kubectl
   
   sudo systemctl daemon-reload
